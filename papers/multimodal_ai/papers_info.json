@@ -1,0 +1,29 @@
+{
+  "2503.16824v1": {
+    "title": "Toward AI-driven Multimodal Interfaces for Industrial CAD Modeling",
+    "authors": [
+      "Jiin Choi",
+      "Yugyeong Jang",
+      "Kyung Hoon Hyun"
+    ],
+    "summary": "AI-driven multimodal interfaces have the potential to revolutionize\nindustrial 3D CAD modeling by improving workflow efficiency and user\nexperience. However, the integration of these technologies remains challenging\ndue to software constraints, user adoption barriers, and limitations in AI\nmodel adaptability. This paper explores the role of multimodal AI in CAD\nenvironments, examining its current applications, key challenges, and future\nresearch directions. We analyze Bayesian workflow inference, multimodal input\nstrategies, and collaborative AI-driven interfaces to identify areas where AI\ncan enhance CAD design processes while addressing usability concerns in\nindustrial manufacturing settings.",
+    "pdf_url": "http://arxiv.org/pdf/2503.16824v1",
+    "published": "2025-03-21"
+  },
+  "2411.03782v1": {
+    "title": "Navigating the landscape of multimodal AI in medicine: a scoping review on technical challenges and clinical applications",
+    "authors": [
+      "Daan Schouten",
+      "Giulia Nicoletti",
+      "Bas Dille",
+      "Catherine Chia",
+      "Pierpaolo Vendittelli",
+      "Megan Schuurmans",
+      "Geert Litjens",
+      "Nadieh Khalili"
+    ],
+    "summary": "Recent technological advances in healthcare have led to unprecedented growth\nin patient data quantity and diversity. While artificial intelligence (AI)\nmodels have shown promising results in analyzing individual data modalities,\nthere is increasing recognition that models integrating multiple complementary\ndata sources, so-called multimodal AI, could enhance clinical decision-making.\nThis scoping review examines the landscape of deep learning-based multimodal AI\napplications across the medical domain, analyzing 432 papers published between\n2018 and 2024. We provide an extensive overview of multimodal AI development\nacross different medical disciplines, examining various architectural\napproaches, fusion strategies, and common application areas. Our analysis\nreveals that multimodal AI models consistently outperform their unimodal\ncounterparts, with an average improvement of 6.2 percentage points in AUC.\nHowever, several challenges persist, including cross-departmental coordination,\nheterogeneous data characteristics, and incomplete datasets. We critically\nassess the technical and practical challenges in developing multimodal AI\nsystems and discuss potential strategies for their clinical implementation,\nincluding a brief overview of commercially available multimodal AI models for\nclinical decision-making. Additionally, we identify key factors driving\nmultimodal AI development and propose recommendations to accelerate the field's\nmaturation. This review provides researchers and clinicians with a thorough\nunderstanding of the current state, challenges, and future directions of\nmultimodal AI in medicine.",
+    "pdf_url": "http://arxiv.org/pdf/2411.03782v1",
+    "published": "2024-11-06"
+  }
+}

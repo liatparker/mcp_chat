@@ -1,0 +1,19 @@
+# Multimodal AI: Research Summary
+
+## Overview
+After exploring the deeplearning.ai website, I identified "Multimodal AI" as a significant emerging area in artificial intelligence. Multimodal AI refers to systems that can process and integrate information from multiple types of inputs or "modalities" (such as text, images, audio, and numerical data) to perform tasks more effectively than models trained on a single data type.
+
+## Paper 1: Toward AI-driven Multimodal Interfaces for Industrial CAD Modeling
+**Authors:** Jiin Choi, Yugyeong Jang, Kyung Hoon Hyun
+**Published:** March 21, 2025
+
+This paper explores how multimodal AI can revolutionize industrial 3D CAD modeling by improving workflow efficiency and user experience. The research examines Bayesian workflow inference, multimodal input strategies, and collaborative AI-driven interfaces for enhancing CAD design processes. Despite the potential benefits, the authors identify several challenges including software constraints, user adoption barriers, and limitations in AI model adaptability in industrial manufacturing settings.
+
+## Paper 2: Navigating the landscape of multimodal AI in medicine: a scoping review
+**Authors:** Daan Schouten, Giulia Nicoletti, Bas Dille, Catherine Chia, Pierpaolo Vendittelli, Megan Schuurmans, Geert Litjens, Nadieh Khalili
+**Published:** November 6, 2024
+
+This comprehensive scoping review analyzed 432 papers on multimodal AI in medicine published between 2018 and 2024. The authors found that multimodal AI models consistently outperform unimodal approaches, showing an average improvement of 6.2 percentage points in AUC (Area Under the Curve). The paper discusses various architectural approaches and fusion strategies across different medical disciplines. However, several challenges remain, including cross-departmental coordination, heterogeneous data characteristics, and incomplete datasets. The authors also provide recommendations for accelerating the field's development and potential strategies for clinical implementation.
+
+## Conclusion
+Multimodal AI represents a significant advancement in artificial intelligence, with applications spanning from industrial design to healthcare. By integrating multiple types of data inputs, these systems can achieve superior performance compared to traditional single-modality AI approaches. The research shows that while technical challenges remain, the potential benefits of multimodal AI in improving decision-making processes and user experiences are substantial. Future research will likely focus on addressing current limitations and expanding applications across various domains.
