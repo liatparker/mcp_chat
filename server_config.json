@@ -26,5 +26,8 @@
             "command": "uvx",
             "args": ["mcp-server-fetch"]
         }
+        
+   
+
     }
 }

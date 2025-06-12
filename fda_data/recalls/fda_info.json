@@ -1,0 +1,192 @@
+{
+  "recall_1_20250611": {
+    "id": "recall_1_20250611",
+    "title": "Kraft package is labeled as Hummingbird Organic Roasted Salted Cashews, net wt. 6oz.",
+    "summary": "Undeclared hazelnut. The Oregon Trail Mix contains visible hazelnut and was mis-labeled as Organic Roasted Salted Cashews, but the label does not declare hazelnut.",
+    "date": "20250513",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Kraft package is labeled as Hummingbird Organic Roasted Salted Cashews, net wt. 6oz.",
+      "company_name": "Honey Heaven Wholesale Inc",
+      "recall_number": "F-0813-2025",
+      "recall_classification": "Class II",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "Distributed in CA, OR, and WA",
+      "quantity": "210/6-oz bags",
+      "state": "OR",
+      "city": "Eugene"
+    }
+  },
+  "recall_2_20250611": {
+    "id": "recall_2_20250611",
+    "title": "Zeke's Daddy's Granola; INGREDIENTS: Whole grain rolled oats, maple syrup, expeller pressed canola oil, coconut, brown sugar, molasses, cinnamon, salt, natural flavor; Contains coconut; Manufactured in a facility that uses peanuts, tree nuts, soy, wheat, sesame, and milk; 30 LBS; ACAI GUYS",
+    "summary": "Product contains undeclared almond and cashew.",
+    "date": "20250509",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Zeke's Daddy's Granola; INGREDIENTS: Whole grain rolled oats, maple syrup, expeller pressed canola oil, coconut, brown sugar, molasses, cinnamon, salt, natural flavor; Contains coconut; Manufactured in a facility that uses peanuts, tree nuts, soy, wheat, sesame, and milk; 30 LBS; ACAI GUYS",
+      "company_name": "BBF Massachusetts LLC",
+      "recall_number": "F-0810-2025",
+      "recall_classification": "Class I",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "NJ",
+      "quantity": "177 cases",
+      "state": "MA",
+      "city": "Greenfield"
+    }
+  },
+  "recall_3_20250611": {
+    "id": "recall_3_20250611",
+    "title": "Dixit Foods, Pohe, Net Wt. 110 g, Ingredients: Rice Flakes, Groundnuts, Edible Sunflower oil, Sugar, Salt, Green Chilli, Asafoetida, Curry Leaves, Mustard seeds, Turmeric Powder etc, Allergen Information: May contain Peanuts, Treenuts, Wheat, Sesame, Mustard",
+    "summary": "Undeclared allergens (milk and/or peanuts).",
+    "date": "20250508",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Dixit Foods, Pohe, Net Wt. 110 g, Ingredients: Rice Flakes, Groundnuts, Edible Sunflower oil, Sugar, Salt, Green Chilli, Asafoetida, Curry Leaves, Mustard seeds, Turmeric Powder etc, Allergen Information: May contain Peanuts, Treenuts, Wheat, Sesame, Mustard",
+      "company_name": "Bondsforever, Inc dba Shastha Foods",
+      "recall_number": "F-0809-2025",
+      "recall_classification": "Class II",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "CA, UT, WA",
+      "quantity": "300 packages",
+      "state": "CA",
+      "city": "San Jose"
+    }
+  },
+  "recall_4_20250611": {
+    "id": "recall_4_20250611",
+    "title": "Dixit Foods, Sabudana Khichadi, Net Wt. 200 g, Ingredients: Sago (Sabudana), Crushed Groundnuts, Sugar, DesiGhee, Salt, Green Chilli, Cumin Seeds. Allergen Information: May contain Peanuts, Treenuts, Wheat, Sesame, Mustard",
+    "summary": "Undeclared allergens (milk and/or peanuts).",
+    "date": "20250508",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Dixit Foods, Sabudana Khichadi, Net Wt. 200 g, Ingredients: Sago (Sabudana), Crushed Groundnuts, Sugar, DesiGhee, Salt, Green Chilli, Cumin Seeds. Allergen Information: May contain Peanuts, Treenuts, Wheat, Sesame, Mustard",
+      "company_name": "Bondsforever, Inc dba Shastha Foods",
+      "recall_number": "F-0808-2025",
+      "recall_classification": "Class II",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "CA, UT, WA",
+      "quantity": "90 packages",
+      "state": "CA",
+      "city": "San Jose"
+    }
+  },
+  "recall_5_20250611": {
+    "id": "recall_5_20250611",
+    "title": "Organic traditions brand JUMBO PUMPKIN SEEDS; 227 g; 8 oz; Packaged and Distributed by: Advantage Health Matters Inc.; UPC: 6 27733 00175 5",
+    "summary": "Product may be contaminated with Salmonella",
+    "date": "20250507",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Organic traditions brand JUMBO PUMPKIN SEEDS; 227 g; 8 oz; Packaged and Distributed by: Advantage Health Matters Inc.; UPC: 6 27733 00175 5",
+      "company_name": "Advantage Health Matters Inc.",
+      "recall_number": "F-0803-2025",
+      "recall_classification": "Class I",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "NY, NJ, VA",
+      "quantity": "84 units",
+      "state": "N/A",
+      "city": "North York"
+    }
+  },
+  "recall_6_20250611": {
+    "id": "recall_6_20250611",
+    "title": "President Brand Licorice Plum (8 oz., 227g)",
+    "summary": "Contains undeclared sulfites, undeclared FD&C Yellow 6, and unapproved color: Amaranth (E123).",
+    "date": "20250502",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "President Brand Licorice Plum (8 oz., 227g)",
+      "company_name": "East CK Trading Inc.",
+      "recall_number": "F-0812-2025",
+      "recall_classification": "Class I",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "NY, VA",
+      "quantity": "unknown",
+      "state": "NY",
+      "city": "Long Island City"
+    }
+  },
+  "recall_7_20250611": {
+    "id": "recall_7_20250611",
+    "title": "Yellowstone Brown Sugar Molasses Baked Beans, NET WT. 15 OZ (425g), packaged in cans, packed 12 cans per case. UPC: 071846187071; Packaged by: Vietti Foods Inc. Nashville, TN 37203",
+    "summary": "Undeclared allergen (soy) due to mislabeling.   Product is labeled as Brown Sugar Molasses Baked Beans, but contains Beef and BBQ Baked Beans. The Beef and BBQ Baked Beans contain soy, which is not declared on the label.",
+    "date": "20250502",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Yellowstone Brown Sugar Molasses Baked Beans, NET WT. 15 OZ (425g), packaged in cans, packed 12 cans per case. UPC: 071846187071; Packaged by: Vietti Foods Inc. Nashville, TN 37203",
+      "company_name": "Vietti Acquisitions, LLC",
+      "recall_number": "F-0806-2025",
+      "recall_classification": "Class I",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "Distributed through retailers in: AZ, CO, DE, FL, GA, IA, IL, KS, KY, LA, MI, MO, MS, NC, NH, NY, OH, OR, PA, TN, TX, UT, and VA",
+      "quantity": "4,515 cases",
+      "state": "TN",
+      "city": "Nashville"
+    }
+  },
+  "recall_8_20250611": {
+    "id": "recall_8_20250611",
+    "title": "Tomato 3 Count UPC 0 33383 65504 8, 10lb box, 25lb box & 60ct/2 layer box Williams Farms Repack, LLC Lodge, SC 29082",
+    "summary": "Product may contain Salmonella.",
+    "date": "20250430",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Tomato 3 Count UPC 0 33383 65504 8, 10lb box, 25lb box & 60ct/2 layer box Williams Farms Repack, LLC Lodge, SC 29082",
+      "company_name": "Williams Farms Produce Sales Co., Inc.",
+      "recall_number": "F-0822-2025",
+      "recall_classification": "Class I",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "Product was shipped to the following states: GA, NC & SC.",
+      "quantity": "50/3 pack tray; 77/10lb box; 673/25lb box; 419/60ct 2 layer box",
+      "state": "SC",
+      "city": "Lodge"
+    }
+  },
+  "recall_9_20250611": {
+    "id": "recall_9_20250611",
+    "title": "H&C Farms Raw Premium Tomatoes, Naturally Grown from Seed Net WT 25 Lbs., 11.34 KG, packaged in cardboard box with lid, multiple packaging sizes of tomatoes: JUMBO PER BOX 38-42 TOMATOES, 5X6 PER BOX 55-62 TOMATOES, 6X6 PER BOX 75-82 TOMATOES, 6X7 PER BOX 85-92 TOMATOES. REFRIGRERATE",
+    "summary": "Potential Salmonella Contamination",
+    "date": "20250429",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "H&C Farms Raw Premium Tomatoes, Naturally Grown from Seed Net WT 25 Lbs., 11.34 KG, packaged in cardboard box with lid, multiple packaging sizes of tomatoes: JUMBO PER BOX 38-42 TOMATOES, 5X6 PER BOX 55-62 TOMATOES, 6X6 PER BOX 75-82 TOMATOES, 6X7 PER BOX 85-92 TOMATOES. REFRIGRERATE",
+      "company_name": "Hanshaw & Capling Farms, LLC",
+      "recall_number": "F-0775-2025",
+      "recall_classification": "Class I",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "Domestic distribution only: TX, IL, WI, SC, FL, TN, IN, MA",
+      "quantity": "3651 BOXES",
+      "state": "FL",
+      "city": "Immokalee"
+    }
+  },
+  "recall_10_20250611": {
+    "id": "recall_10_20250611",
+    "title": "Scooper Hero Ice Cream, 3 GAL, Wells Enterprises, INC dba Wells Dairy, Inc Le Mars, IA 51031, UPC: 070640050642, Item: 487054",
+    "summary": "Foreign material (plastic) may be present in ice cream product",
+    "date": "20250425",
+    "type": "recall",
+    "retrieved_date": "2025-06-11",
+    "product_info": {
+      "product_name": "Scooper Hero Ice Cream, 3 GAL, Wells Enterprises, INC dba Wells Dairy, Inc Le Mars, IA 51031, UPC: 070640050642, Item: 487054",
+      "company_name": "Wells Enterprises, Inc.",
+      "recall_number": "F-0783-2025",
+      "recall_classification": "Class II",
+      "recall_status": "Ongoing",
+      "distribution_pattern": "103 distribution centers across the US",
+      "quantity": "726 3-gallon tubs",
+      "state": "IA",
+      "city": "Le Mars"
+    }
+  }
+}

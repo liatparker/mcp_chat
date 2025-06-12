@@ -2,8 +2,8 @@
 from dotenv import load_dotenv
 from anthropic import Anthropic
 from mcp import ClientSession, StdioServerParameters, types
-#from mcp.client.stdio import stdio_client
-from mcp.client.sse import sse_client
+from mcp.client.stdio import stdio_client
+#from mcp.client.sse import sse_client
 #from mcp.client.streamable_http import streamablehttp_client
 from typing import List, Dict, TypedDict
 from contextlib import AsyncExitStack
@@ -34,10 +34,10 @@ class MCP_ChatBot:
     async def connect_to_server(self, server_name, server_config):
         try:
             server_params = StdioServerParameters(**server_config)
-            sse_transport = await self.exit_stack.enter_async_context(
-                sse_client(url= "server_url/sse" )
+            stdio_transport = await self.exit_stack.enter_async_context(
+                stdio_client(server_params )
             )
-            read, write = sse_transport
+            read, write = stdio_transport
             session = await self.exit_stack.enter_async_context(
                 ClientSession(read, write)
             )
@@ -138,9 +138,9 @@ class MCP_ChatBot:
         session = self.sessions.get(resource_uri)
         
         # Fallback for papers URIs - try any papers resource session
-        if not session and resource_uri.startswith("papers://"):
+        if not session and resource_uri.startswith(["papers://", "fda://"]):
             for uri, sess in self.sessions.items():
-                if uri.startswith("papers://"):
+                if uri.startswith(["papers://", "fda://"]):
                     session = sess
                     break
             
@@ -223,9 +223,9 @@ class MCP_ChatBot:
                     # Remove @ sign  
                     topic = query[1:]
                     if topic == "folders":
-                        resource_uri = "papers://folders"
+                        resource_uri = "papers://folders" or "fda://folders"
                     else:
-                        resource_uri = f"papers://{topic}"
+                        resource_uri = f"papers://{topic}" or f"fda://{topic}"
                     await self.get_resource(resource_uri)
                     continue
                 

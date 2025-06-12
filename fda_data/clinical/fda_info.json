@@ -1,0 +1,137 @@
+{
+  "clinical_1_20250611": {
+    "id": "clinical_1_20250611",
+    "title": "ENBREL",
+    "summary": "Kidney rupture",
+    "date": "20250331",
+    "type": "clinical",
+    "retrieved_date": "2025-06-11",
+    "clinical_info": {
+      "study_phase": "N/A",
+      "conditions": [
+        "Kidney rupture"
+      ],
+      "interventions": [
+        "ENBREL"
+      ],
+      "status": "1",
+      "sponsor": "GB-PFIZER INC-PV202500036129",
+      "locations": [
+        "GB"
+      ],
+      "enrollment": 1
+    }
+  },
+  "clinical_2_20250611": {
+    "id": "clinical_2_20250611",
+    "title": "ARANESP",
+    "summary": "Death",
+    "date": "20250331",
+    "type": "clinical",
+    "retrieved_date": "2025-06-11",
+    "clinical_info": {
+      "study_phase": "N/A",
+      "conditions": [
+        "Death"
+      ],
+      "interventions": [
+        "ARANESP"
+      ],
+      "status": "1",
+      "sponsor": "GB-AMGEN-GBRSP2025058611",
+      "locations": [
+        "GB"
+      ],
+      "enrollment": 1
+    }
+  },
+  "clinical_3_20250611": {
+    "id": "clinical_3_20250611",
+    "title": "XGEVA",
+    "summary": "Myelosuppression",
+    "date": "20250331",
+    "type": "clinical",
+    "retrieved_date": "2025-06-11",
+    "clinical_info": {
+      "study_phase": "N/A",
+      "conditions": [
+        "Myelosuppression"
+      ],
+      "interventions": [
+        "XGEVA",
+        "DOCETAXEL",
+        "SODIUM CHLORIDE"
+      ],
+      "status": "1",
+      "sponsor": "CN-AMGEN-CHNSP2025059291",
+      "locations": [
+        "CN"
+      ],
+      "enrollment": 1
+    }
+  },
+  "clinical_4_20250611": {
+    "id": "clinical_4_20250611",
+    "title": "PAXLOVID",
+    "summary": "Drug ineffective",
+    "date": "20250331",
+    "type": "clinical",
+    "retrieved_date": "2025-06-11",
+    "clinical_info": {
+      "study_phase": "N/A",
+      "conditions": [
+        "Drug ineffective"
+      ],
+      "interventions": [
+        "PAXLOVID",
+        "ACETAMINOPHEN",
+        "SENNOSIDES A AND B",
+        "ASPIRIN",
+        "CARBOCYSTEINE",
+        "CARVEDILOL",
+        "SODIUM FERROUS CITRATE",
+        "FUROSEMIDE",
+        "LANSOPRAZOLE",
+        "EDOXABAN TOSYLATE",
+        "MAGNESIUM OXIDE",
+        "NICORANDIL",
+        "ROSUVASTATIN CALCIUM",
+        "LEVOTHYROXINE SODIUM"
+      ],
+      "status": "1",
+      "sponsor": "JP-PFIZER INC-202500066483",
+      "locations": [
+        "JP"
+      ],
+      "enrollment": 1
+    }
+  },
+  "clinical_5_20250611": {
+    "id": "clinical_5_20250611",
+    "title": "PEGFILGRASTIM",
+    "summary": "Cardiac failure",
+    "date": "20250331",
+    "type": "clinical",
+    "retrieved_date": "2025-06-11",
+    "clinical_info": {
+      "study_phase": "N/A",
+      "conditions": [
+        "Cardiac failure",
+        "Gastric ulcer",
+        "Gastrointestinal haemorrhage",
+        "Anaemia"
+      ],
+      "interventions": [
+        "PEGFILGRASTIM",
+        "DOCETAXEL",
+        "RAMUCIRUMAB"
+      ],
+      "status": "1",
+      "sponsor": "JP-KYOWAKIRIN-2025KK004999",
+      "locations": [
+        "JP"
+      ],
+      "enrollment": 1
+    }
+  }
+}

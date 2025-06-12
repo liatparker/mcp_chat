@@ -30,16 +30,6 @@ mcp = FastMCP(
         "tools": True,
         "resources": True,
         "prompts": True
-    },
-    zones={
-        "firecrawl": {
-            "name": "mcp_mcp-server-firecrawl",
-            "config": {
-                "unlocker": True,
-                "timeout": 30000,
-                "retries": 3
-            }
-        }
     }
 )
 
@@ -233,7 +223,7 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
 @mcp.tool()
 def search_fda(topic: str, max_results: int = 5) -> List[str]:
     """
-    Search for FDA information and store results in topic-specific folders.
+    Search for FDA information and store results in topic-specific folders using Bright Data.
     
     Args:
         topic: The topic to search for (e.g., "recalls", "drugs", "food", "clinical")
@@ -243,156 +233,119 @@ def search_fda(topic: str, max_results: int = 5) -> List[str]:
         List of document IDs found in the search
     """
     
-    print(f"\n=== Starting FDA Search for topic '{topic}' ===")
+    print(f"\n=== Starting FDA Search for topic '{topic}' using Bright Data ===")
     print(f"FDA_DIR is set to: {FDA_DIR}")
-    print(f"Current working directory: {os.getcwd()}")
     
     try:
-        # Setup headers for requests
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
-            'Accept': 'application/json',
-            'Accept-Language': 'en-US,en;q=0.5'
-        }
-        
-        # Define search parameters based on topic
+        # Define base FDA URLs and search parameters based on topic
         if topic.lower() == 'recalls':
-            search_url = 'https://api.fda.gov/food/enforcement.json'
+            base_url = 'https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts'
+            search_term = 'active recalls'
             doc_type = 'recall'
-            params = {
-                'search': 'status:"Ongoing"',
-                'limit': max_results,
-                'sort': 'recall_initiation_date:desc'
-            }
         elif topic.lower() == 'drugs':
-            search_url = 'https://api.fda.gov/drug/event.json'
+            base_url = 'https://www.fda.gov/drugs/drug-safety-and-availability'
+            search_term = 'drug safety'
             doc_type = 'drug'
-            params = {
-                'limit': max_results,
-                'sort': 'receivedate:desc'
-            }
         elif topic.lower() == 'food':
-            search_url = 'https://api.fda.gov/food/enforcement.json'
+            base_url = 'https://www.fda.gov/food/recalls-outbreaks-emergencies'
+            search_term = 'food safety recalls'
             doc_type = 'food'
-            params = {
-                'search': 'product_type:"food"',
-                'limit': max_results,
-                'sort': 'recall_initiation_date:desc'
-            }
-        elif topic.lower() == 'clinical':
-            search_url = 'https://api.fda.gov/drug/event.json'  # Using drug events for clinical data
-            doc_type = 'clinical'
-            params = {
-                'search': 'serious:1',  # Focus on serious clinical events
-                'limit': max_results,
-                'sort': 'receivedate:desc'
-            }
         else:
-            # For other topics, use the enforcement API with topic as search term
-            search_url = 'https://api.fda.gov/food/enforcement.json'
+            base_url = 'https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts'
+            search_term = f'{topic} recalls'
             doc_type = 'general'
-            params = {
-                'search': f'reason_for_recall:"{topic}"',
-                'limit': max_results,
-                'sort': 'recall_initiation_date:desc'
+
+        # First use firecrawl_search to find relevant FDA pages
+        search_results = mcp.call('mcp_mcp-server-firecrawl_firecrawl_search', {
+            'query': f'site:fda.gov {search_term}',
+            'limit': max_results,
+            'scrapeOptions': {
+                'formats': ['markdown'],
+                'onlyMainContent': True
             }
-            
-        print(f"\nSearching FDA {doc_type} API: {search_url}")
-        print(f"Search parameters: {params}")
-        
-        # Create a session and get the data
-        session = requests.Session()
-        session.headers.update(headers)
-        
-        response = session.get(search_url, params=params, timeout=10)
-        response.raise_for_status()
-        
-        # Parse JSON response
-        data = response.json()
-        results = data.get('results', [])
-        
-        print(f"Found {len(results)} results")
-        
-        # Process each result
+        })
+
         documents = []
-        for idx, result in enumerate(results, 1):
+        for idx, result in enumerate(search_results.get('results', []), 1):
             try:
-                print(f"\nProcessing result {idx}/{len(results)}")
+                # Use firecrawl_scrape to get detailed content from each page
+                scrape_result = mcp.call('mcp_mcp-server-firecrawl_firecrawl_scrape', {
+                    'url': result['url'],
+                    'formats': ['markdown'],
+                    'onlyMainContent': True
+                })
+
+                content = scrape_result.get('markdown', '')
                 
                 # Generate a unique document ID
                 doc_id = f"{doc_type}_{idx}_{datetime.now().strftime('%Y%m%d')}"
-                print(f"Generated document ID: {doc_id}")
                 
-                # Extract information based on document type
+                # Extract title and summary from content
+                title = result.get('title', '').replace(' | FDA', '')
+                summary = result.get('snippet', '')
+
+                # Create document info based on type
                 if doc_type in ['recall', 'food', 'general']:
                     doc_info = {
                         'id': doc_id,
-                        'title': result.get('product_description', ''),
-                        'summary': result.get('reason_for_recall', ''),
-                        'date': result.get('recall_initiation_date', datetime.now().strftime('%Y-%m-%d')),
+                        'title': title,
+                        'summary': summary,
+                        'date': datetime.now().strftime('%Y-%m-%d'),
                         'type': doc_type,
+                        'url': result['url'],
                         'retrieved_date': datetime.now().strftime('%Y-%m-%d'),
                         'product_info': {
-                            'product_name': result.get('product_description', ''),
-                            'company_name': result.get('recalling_firm', ''),
-                            'recall_number': result.get('recall_number', ''),
-                            'recall_classification': result.get('classification', ''),
-                            'recall_status': result.get('status', ''),
-                            'distribution_pattern': result.get('distribution_pattern', ''),
-                            'quantity': result.get('product_quantity', ''),
-                            'state': result.get('state', ''),
-                            'city': result.get('city', '')
+                            'product_name': title,
+                            'company_name': '',  # Will be extracted from content
+                            'recall_number': '',
+                            'recall_classification': '',
+                            'recall_status': 'Ongoing',
+                            'distribution_pattern': '',
+                            'quantity': '',
+                            'state': '',
+                            'city': ''
                         }
                     }
+                    
+                    # Extract product info from content
+                    product_info = extract_product_info_from_content(content, title, summary)
+                    doc_info['product_info'].update(product_info)
+                    
                 elif doc_type == 'drug':
                     doc_info = {
                         'id': doc_id,
-                        'title': result.get('patient', {}).get('drug', [{}])[0].get('medicinalproduct', ''),
-                        'summary': result.get('patient', {}).get('reaction', [{}])[0].get('reactionmeddrapt', ''),
-                        'date': result.get('receiptdate', datetime.now().strftime('%Y-%m-%d')),
+                        'title': title,
+                        'summary': summary,
+                        'date': datetime.now().strftime('%Y-%m-%d'),
                         'type': doc_type,
+                        'url': result['url'],
                         'retrieved_date': datetime.now().strftime('%Y-%m-%d'),
                         'drug_info': {
-                            'drug_name': result.get('patient', {}).get('drug', [{}])[0].get('medicinalproduct', ''),
-                            'manufacturer': result.get('patient', {}).get('drug', [{}])[0].get('manufacturername', ''),
-                            'dosage_form': result.get('patient', {}).get('drug', [{}])[0].get('drugdosageform', ''),
-                            'route': result.get('patient', {}).get('drug', [{}])[0].get('drugadministrationroute', ''),
-                            'indication': result.get('patient', {}).get('drug', [{}])[0].get('drugindication', '')
+                            'drug_name': title,
+                            'manufacturer': '',
+                            'dosage_form': '',
+                            'route': '',
+                            'indication': ''
                         }
                     }
-                elif doc_type == 'clinical':
-                    doc_info = {
-                        'id': doc_id,
-                        'title': result.get('patient', {}).get('drug', [{}])[0].get('medicinalproduct', ''),
-                        'summary': result.get('patient', {}).get('reaction', [{}])[0].get('reactionmeddrapt', ''),
-                        'date': result.get('receiptdate', datetime.now().strftime('%Y-%m-%d')),
-                        'type': doc_type,
-                        'retrieved_date': datetime.now().strftime('%Y-%m-%d'),
-                        'clinical_info': {
-                            'study_phase': 'N/A',  # Drug events don't have phases
-                            'conditions': [r.get('reactionmeddrapt', '') for r in result.get('patient', {}).get('reaction', []) if r.get('reactionmeddrapt')],
-                            'interventions': [d.get('medicinalproduct', '') for d in result.get('patient', {}).get('drug', []) if d.get('medicinalproduct')],
-                            'status': result.get('serious', 'Unknown'),
-                            'sponsor': result.get('companynumb', 'Unknown'),
-                            'locations': [result.get('occurcountry', 'Unknown')],
-                            'enrollment': 1  # Drug events are per-patient
-                        }
-                    }
-                
+                    
+                    # Extract drug info from content
+                    drug_info = extract_drug_info_from_content(content)
+                    doc_info['drug_info'].update(drug_info)
+
                 print(f"Created document info for: {doc_info['title']}")
                 documents.append(doc_info)
                 print(f"Added document: {doc_id}")
-                
+
             except Exception as e:
                 print(f"Error processing result {idx}: {e}")
                 continue
 
-        # Create directory for this document type
-        path = os.path.join(FDA_DIR, doc_type)  # Use doc_type instead of topic
+        # Create directory for this topic
+        path = os.path.join(FDA_DIR, topic.lower().replace(" ", "_"))
         os.makedirs(path, exist_ok=True)
         
         file_path = os.path.join(path, "fda_info.json")
-        print(f"\nSaving data to: {file_path}")
         
         # Try to load existing FDA info
         try:
@@ -533,22 +486,13 @@ def get_fda_documents(topic: str) -> str:
     Get detailed information about FDA documents from a specific topic folder.
     
     Args:
-        topic: The topic folder to retrieve FDA documents from (e.g., "recalls", "drugs", "food", "clinical")
+        topic: The topic folder to retrieve FDA documents from (e.g., "recalls")
     """
-    # Map topic to doc_type
-    doc_type_map = {
-        'recalls': 'recall',
-        'drugs': 'drug',
-        'food': 'food',
-        'clinical': 'clinical'
-    }
-    doc_type = doc_type_map.get(topic.lower(), topic.lower())
-    
-    topic_dir = os.path.join(FDA_DIR, doc_type)
+    topic_dir = os.path.join(FDA_DIR, topic.lower().replace(" ", "_"))
     json_file = os.path.join(topic_dir, "fda_info.json")
     
     if not os.path.exists(json_file):
-        return f"# No FDA documents found for {topic}\n\nTry searching for FDA documents first using search_fda('{topic}')"
+        return f"# No FDA documents found in topic folder: {topic}\n\nTry searching for FDA documents first."
     
     try:
         with open(json_file, 'r', encoding='utf-8') as f:
@@ -567,51 +511,38 @@ def get_fda_documents(topic: str) -> str:
         )
         
         for key, doc in sorted_entries:
-            # Create section header based on document type
-            if doc['type'] == 'recall':
-                product = doc.get('product_info', {}).get('product_name', 'Unknown Product')
-                company = doc.get('product_info', {}).get('company_name', 'Unknown Company')
+            # Create section header based on topic
+            if topic.lower() == 'recalls':
+                product = doc.get('product_name', 'Unknown Product')
+                company = doc.get('company_name', 'Unknown Company')
                 content += f"## {product} by {company}\n"
                 content += f"- **Recall Date**: {doc['date']}\n"
-                content += f"- **Recall Class**: {doc.get('product_info', {}).get('recall_classification', 'Not specified')}\n"
-                content += f"- **Distribution**: {doc.get('product_info', {}).get('distribution_pattern', 'Not specified')}\n"
-            elif doc['type'] == 'drug':
-                drug_info = doc.get('drug_info', {})
-                content += f"## {drug_info.get('drug_name', doc['title'])}\n"
-                content += f"- **Date**: {doc['date']}\n"
-                content += f"- **Manufacturer**: {drug_info.get('manufacturer', 'Not specified')}\n"
-                content += f"- **Dosage Form**: {drug_info.get('dosage_form', 'Not specified')}\n"
-                content += f"- **Route**: {drug_info.get('route', 'Not specified')}\n"
-            elif doc['type'] == 'clinical':
-                clinical_info = doc.get('clinical_info', {})
-                content += f"## {doc['title']}\n"
-                content += f"- **Date**: {doc['date']}\n"
-                content += f"- **Phase**: {clinical_info.get('study_phase', 'Not specified')}\n"
-                content += f"- **Status**: {clinical_info.get('status', 'Not specified')}\n"
-                content += f"- **Sponsor**: {clinical_info.get('sponsor', 'Not specified')}\n"
+                content += f"- **Recall Class**: {doc.get('recall_class', 'Not specified')}\n"
+                content += f"- **Distribution**: {doc.get('distribution', 'Not specified')}\n"
             else:
                 content += f"## {doc['title']}\n"
                 content += f"- **Date**: {doc['date']}\n"
             
-            if doc.get('url'):
-                content += f"- **URL**: [{doc['url']}]({doc['url']})\n\n"
+            content += f"- **URL**: [{doc['url']}]({doc['url']})\n\n"
             
             if doc['summary']:
                 content += f"### Summary\n{doc['summary']}\n\n"
             
-            # Add type-specific additional information
-            if doc['type'] == 'clinical':
-                clinical_info = doc.get('clinical_info', {})
-                if clinical_info.get('conditions'):
-                    content += "### Conditions\n"
-                    for condition in clinical_info['conditions']:
-                        content += f"- {condition}\n"
-                    content += "\n"
-                if clinical_info.get('interventions'):
-                    content += "### Interventions\n"
-                    for intervention in clinical_info['interventions']:
-                        content += f"- {intervention}\n"
-                    content += "\n"
+            if doc.get('detailed_info', {}).get('key_points'):
+                content += "### Key Points\n"
+                for point in doc['detailed_info']['key_points']:
+                    content += f"- {point}\n"
+                content += "\n"
+            
+            if doc.get('detailed_info', {}).get('tables'):
+                content += "### Additional Information\n"
+                for table in doc['detailed_info']['tables']:
+                    if table.get('headers') and table.get('data'):
+                        content += "| " + " | ".join(table['headers']) + " |\n"
+                        content += "|" + "|".join(["---"] * len(table['headers'])) + "|\n"
+                        for row in table['data']:
+                            content += "| " + " | ".join(row) + " |\n"
+                        content += "\n"
             
             content += "---\n\n"
         
