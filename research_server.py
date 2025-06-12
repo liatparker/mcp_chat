@@ -855,4 +855,5 @@ def get_fda_folders() -> str:
 
 if __name__ == "__main__":
     # Run MCP server
-    mcp.run(transport = 'stdio')
+    #mcp.run(transport = 'stdio')
+    mcp.run(transport = 'sse')

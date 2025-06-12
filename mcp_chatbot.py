@@ -2,8 +2,8 @@
 from dotenv import load_dotenv
 from anthropic import Anthropic
 from mcp import ClientSession, StdioServerParameters, types
-from mcp.client.stdio import stdio_client
-#from mcp.client.sse import sse_client
+#from mcp.client.stdio import stdio_client
+from mcp.client.sse import sse_client
 #from mcp.client.streamable_http import streamablehttp_client
 from typing import List, Dict, TypedDict
 from contextlib import AsyncExitStack
@@ -34,10 +34,10 @@ class MCP_ChatBot:
     async def connect_to_server(self, server_name, server_config):
         try:
             server_params = StdioServerParameters(**server_config)
-            stdio_transport = await self.exit_stack.enter_async_context(
-                stdio_client(server_params )
+            sse_transport = await self.exit_stack.enter_async_context(
+                sse_client('server_url/sse') # server_params for stdio
             )
-            read, write = stdio_transport
+            read, write = sse_transport
             session = await self.exit_stack.enter_async_context(
                 ClientSession(read, write)
             )
